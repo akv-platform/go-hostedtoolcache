@@ -36,21 +36,7 @@ jobs:
 
   - task: GoTool@0
     inputs:
-      version: '1.14.4'
-      
-  # - task: PowerShell@2
-  #   displayName: 'Set up GO_ROOT'
-  #   inputs:
-  #     TargetType: inline
-  #     script: |
-  #       $GoToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "go"
-  #       $GoToolcacheVersionPath = Join-Path -Path $GoToolcachePath -ChildPath "$(Version)"
-  #       $goDirectory = Join-Path $GoToolcacheVersionPath "$(Architecture)"
-  #       $BIN_PATH = Join-Path -Path $goDirectory -ChildPath "bin"
-  #       Write-Host "GOROOT = ${goDirectory}"
-  #       Write-Host "BIN_PATH = ${BIN_PATH}"
-  #       Write-Host "##vso[task.setvariable variable=GOROOT]${goDirectory}"
-  #       Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};$BIN_PATH";
+      version: '$(Version)'
 
   - task: PowerShell@2
     displayName: 'Run tests'
