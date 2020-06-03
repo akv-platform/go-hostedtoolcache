@@ -23,6 +23,7 @@ Describe "Go" {
     }
 
     It "Run simple code" {
+        Set-Location -Path "simple"
         "go run simple" | Should -ReturnZeroExitCode
         "simple" | Should -ReturnZeroExitCode
     }
