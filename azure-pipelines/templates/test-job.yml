@@ -43,11 +43,10 @@ jobs:
         $GoToolcacheVersionPath = Join-Path -Path $GoToolcachePath -ChildPath "$(Version)"
         $goDirectory = Join-Path $GoToolcacheVersionPath "$(Architecture)"
         $BIN_PATH = Join-Path -Path $goDirectory -ChildPath "bin"
-        $currentPath = Get-MachinePath
-        $newPath = $PathItem + ';' + $currentPath
-        Set-MachinePath -NewPath $newPath
         Write-Host "GOROOT = ${goDirectory}"
+        Write-Host "BIN_PATH = ${BIN_PATH}"
         Write-Host "##vso[task.setvariable variable=GOROOT]${goDirectory}"
+        Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};$BIN_PATH";
 
   - task: PowerShell@2
     displayName: 'Run tests'
