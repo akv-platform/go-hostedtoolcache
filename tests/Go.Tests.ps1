@@ -23,7 +23,7 @@ Describe "Go" {
     }
 
     It "Run simple code" {
-        "go run --work simple" | Should -ReturnZeroExitCode
+        "go run simple" | Should -ReturnZeroExitCode
         "simple" | Should -ReturnZeroExitCode
     }
 }
