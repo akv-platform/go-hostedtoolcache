@@ -53,7 +53,7 @@ class GoBuilder {
         Return base URI for Go binaries.
         #>
 
-        return "https://storage.googleapis.com/golang/"
+        return "https://storage.googleapis.com/golang"
     }
 
     [string] Download() {
