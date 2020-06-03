@@ -7,11 +7,11 @@ Import-Module (Join-Path $PSScriptRoot "../helpers/pester-extensions.psm1")
 
 Describe "Go" {
     It "is available" {
-        "go --version" | Should -ReturnZeroExitCode
+        "go version" | Should -ReturnZeroExitCode
     }
 
     It "version is correct" {
-        $versionOutput = Invoke-Expression "go --version"
+        $versionOutput = Invoke-Expression "go version"
         $versionOutput | Should -Match $Version
     }
 
@@ -23,7 +23,7 @@ Describe "Go" {
     }
 
     It "Run simple code" {
-        "go install simpletest" | Should -ReturnZeroExitCode
-        "simpletest" | Should -ReturnZeroExitCode
+        "go install ./simpletest" | Should -ReturnZeroExitCode
+        "./simpletest" | Should -ReturnZeroExitCode
     }
 }
