@@ -1,18 +1,18 @@
-using module "./builders/node-builder.psm1"
+using module "./builders/go-builder.psm1"
 
-class NixNodeBuilder : NodeBuilder {
+class NixGoBuilder : GoBuilder {
     <#
     .SYNOPSIS
-    Ubuntu Node.js builder class.
+    Ubuntu Go builder class.
 
     .DESCRIPTION
-    Contains methods that required to build Ubuntu Node.js artifact from sources. Inherited from base NixNodeBuilder.
+    Contains methods that required to build Ubuntu Go artifact from sources. Inherited from base NixGoBuilder.
 
     .PARAMETER platform
-    The full name of platform for which Node.js should be built.
+    The full name of platform for which Go should be built.
 
     .PARAMETER version
-    The version of Node.js that should be built.
+    The version of Go that should be built.
 
     #>
 
@@ -20,24 +20,30 @@ class NixNodeBuilder : NodeBuilder {
     [string] $InstallationScriptName
     [string] $OutputArtifactName
 
-    NixNodeBuilder(
+    NixGoBuilder(
         [version] $version,
         [string] $platform,
         [string] $architecture
     ) : Base($version, $platform, $architecture) {
         $this.InstallationTemplateName = "nix-setup-template.sh"
         $this.InstallationScriptName = "setup.sh"
-        $this.OutputArtifactName = "node-$Version-$Platform-$Architecture.tar.gz"
+        $this.OutputArtifactName = "go-$Version-$Platform-$Architecture.tar.gz"
     }
 
     [uri] GetBinariesUri() {
         <#
         .SYNOPSIS
-        Get base Node.js URI and return complete URI for Node.js installation executable.
+        Get base Go URI and return complete URI for Go installation executable.
         #>
 
         $base = $this.GetBaseUri()
-        return "${base}/v$($this.Version)/node-v$($this.Version)-$($this.Platform)-$($this.Architecture).tar.gz"
+        $allJsonVerions = Invoke-RestMethod "https://golang.org/dl/?mode=json&include=all"
+        $versionOS = $allJsonVerions | Where-Object { $_.version -Match "$($this.Version)" } | Select-Object -Last 1
+        $arch = "$($this.Architecture)".Replace("x", "")
+        $objVersion = $versionOS.files | Where-Object { $_.os -Match "$($this.Platform)" -and $_.filename -Match "tar.gz" -and $_.arch -Match "$arch" } | Select-Object -First 1
+        $filename = $objVersion.filename
+
+        return "${base}/$filename"
     }
 
     [void] ExtractBinaries($archivePath) {
@@ -47,7 +53,7 @@ class NixNodeBuilder : NodeBuilder {
     [void] CreateInstallationScript() {
         <#
         .SYNOPSIS
-        Create Node.js artifact installation script based on template specified in InstallationTemplateName property.
+        Create Go artifact installation script based on template specified in InstallationTemplateName property.
         #>
 
         $installationScriptLocation = New-Item -Path $this.WorkFolderLocation -Name $this.InstallationScriptName -ItemType File

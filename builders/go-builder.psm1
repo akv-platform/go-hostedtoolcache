@@ -1,25 +1,25 @@
-class NodeBuilder {
+class GoBuilder {
     <#
     .SYNOPSIS
-    Base Node.js builder class.
+    Base Go builder class.
 
     .DESCRIPTION
-    Base Node.js builder class that contains general builder methods.
+    Base Go builder class that contains general builder methods.
 
     .PARAMETER Version
-    The version of Node.js that should be built.
+    The version of Go that should be built.
 
     .PARAMETER Platform
-    The platform of Node.js that should be built.
+    The platform of Go that should be built.
 
     .PARAMETER Architecture
-    The architecture with which Node.js should be built.
+    The architecture with which Go should be built.
 
     .PARAMETER TempFolderLocation
-    The location of temporary files that will be used during Node.js package generation. Using system BUILD_STAGINGDIRECTORY variable value.
+    The location of temporary files that will be used during Go package generation. Using system BUILD_STAGINGDIRECTORY variable value.
 
     .PARAMETER ArtifactLocation
-    The location of generated Node.js artifact. Using system environment BUILD_BINARIESDIRECTORY variable value.
+    The location of generated Go artifact. Using system environment BUILD_BINARIESDIRECTORY variable value.
 
     .PARAMETER InstallationTemplatesLocation
     The location of installation script template. Using "installers" folder from current repository.
@@ -34,7 +34,7 @@ class NodeBuilder {
     [string] $ArtifactFolderLocation
     [string] $InstallationTemplatesLocation
 
-    NodeBuilder ([version] $version, [string] $platform, [string] $architecture) {
+    GoBuilder ([version] $version, [string] $platform, [string] $architecture) {
         $this.Version = $version
         $this.Platform = $platform
         $this.Architecture = $architecture
@@ -50,16 +50,16 @@ class NodeBuilder {
     [uri] GetBaseUri() {
         <#
         .SYNOPSIS
-        Return base URI for Node.js binaries.
+        Return base URI for Go binaries.
         #>
 
-        return "https://nodejs.org/download/release"
+        return "https://storage.googleapis.com/golang/"
     }
 
     [string] Download() {
         <#
         .SYNOPSIS
-        Download Node.js binaries into artifact location.
+        Download Go binaries into artifact location.
         #>
 
         $binariesUri = $this.GetBinariesUri()
@@ -81,10 +81,10 @@ class NodeBuilder {
     [void] Build() {
         <#
         .SYNOPSIS
-        Generates Node.js artifact from downloaded binaries.
+        Generates Go artifact from downloaded binaries.
         #>
 
-        Write-Host "Download Node.js $($this.Version) [$($this.Architecture)] executable..."
+        Write-Host "Download Go $($this.Version) [$($this.Architecture)] executable..."
         $binariesArchivePath = $this.Download()
 
         Write-Host "Unpack binaries to target directory"
