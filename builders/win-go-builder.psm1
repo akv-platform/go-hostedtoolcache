@@ -75,6 +75,6 @@ class WinGoBuilder : GoBuilder {
 
     [void] ArchiveArtifact() {
         $OutputPath = Join-Path $this.ArtifactFolderLocation $this.OutputArtifactName
-        Create-SevenZipArchive -SourceFolder $this.WorkFolderLocation -ArchivePath $OutputPath -ArchiveType "7z"
+        Create-SevenZipArchive -SourceFolder $this.WorkFolderLocation -ArchivePath $OutputPath -ArchiveType "zip"
     }
 }
