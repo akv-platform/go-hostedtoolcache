@@ -26,7 +26,7 @@ Describe "Go" {
     $sourceLocation = Get-Location
     Write-Host "GOROOT ${env:GOROOT}"
     Write-Host "PATH ${env:PATH}"
-
+    go env
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
         Set-Location -Path $simpleLocation
