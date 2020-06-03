@@ -23,13 +23,13 @@ Describe "Go" {
     }
 
     It "Run simple code" {
-        Write-Host "GOROOT $GOROOT"
-        Write-Host "GOPATH $GOPATH"
-        Write-Host "GOBIN $GOBIN"
+        Write-Host "GOROOT $env:GOROOT"
+        Write-Host "GOPATH $env:GOPATH"
+        Write-Host "GOBIN $env:GOBIN"
         Set-Location -Path "simple"
-        Write-Host "GOROOT $GOROOT"
-        Write-Host "GOPATH $GOPATH"
-        Write-Host "GOBIN $GOBIN"
+        Write-Host "GOROOT $env:GOROOT"
+        Write-Host "GOPATH $env:GOPATH"
+        Write-Host "GOBIN $env:GOBIN"
         "go run simple" | Should -ReturnZeroExitCode
         "simple" | Should -ReturnZeroExitCode
     }
