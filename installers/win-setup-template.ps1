@@ -8,7 +8,7 @@ if ([string]::IsNullOrEmpty($ToolcacheRoot)) {
     # GitHub images don't have `AGENT_TOOLSDIRECTORY` variable
     $ToolcacheRoot = $env:RUNNER_TOOL_CACHE
 }
-$GoToolcachePath = Join-Path -Path $ToolcacheRoot -ChildPath "node"
+$GoToolcachePath = Join-Path -Path $ToolcacheRoot -ChildPath "go"
 $GoToolcacheVersionPath = Join-Path -Path $GoToolcachePath -ChildPath $Version.ToString()
 $GoToolcacheArchitecturePath = Join-Path $GoToolcacheVersionPath $Architecture
 
