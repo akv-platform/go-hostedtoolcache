@@ -38,7 +38,12 @@ class NixGoBuilder : GoBuilder {
 
         $base = $this.GetBaseUri()
         $allJsonVerions = Invoke-RestMethod "https://golang.org/dl/?mode=json&include=all"
-        $versionOS = $allJsonVerions | Where-Object { $_.version -Match "$($this.Version)" } | Select-Object -Last 1
+        If ($this.Version.Build -eq "0") {
+            $goVersion = "go$($this.Version.ToString(2))"
+        } else {
+            $goVersion = "go$($this.Version.ToString(3))"
+        }
+        $versionOS = $allJsonVerions | Where-Object { $_.version -eq "$goVersion" } | Select-Object -Last 1
         $arch = "$($this.Architecture)".Replace("x", "")
         $objVersion = $versionOS.files | Where-Object { $_.os -Match "$($this.Platform)" -and $_.filename -Match "tar.gz" -and $_.arch -Match "$arch" } | Select-Object -First 1
         $filename = $objVersion.filename

@@ -45,18 +45,32 @@ Describe "Go" {
     It "Run maps code" {
         $mapsLocation = Join-Path -Path $sourceLocation -ChildPath "maps"
         Set-Location -Path $mapsLocation
-        "go mod init example.com/m" | Should -ReturnZeroExitCode
-        "go run maps.go" | Should -ReturnZeroExitCode
-        "go build maps.go" | Should -ReturnZeroExitCode
-        "./maps" | Should -ReturnZeroExitCode
+        try{
+            go mod init example.com/m
+        }
+        catch {
+            Write-Host "LASTEXITCODE $LASTEXITCODE"
+        }
+        finally {
+            "go run maps.go" | Should -ReturnZeroExitCode
+            "go build maps.go" | Should -ReturnZeroExitCode
+            "./maps" | Should -ReturnZeroExitCode
+        }
     }
 
     It "Run methods code" {
         $methodsLocation = Join-Path -Path $sourceLocation -ChildPath "methods"
         Set-Location -Path $methodsLocation
-        "go mod init example.com/m" | Should -ReturnZeroExitCode
-        "go run methods.go" | Should -ReturnZeroExitCode
-        "go build methods.go" | Should -ReturnZeroExitCode
-        "./methods" | Should -ReturnZeroExitCode
+        try{
+            go mod init example.com/m
+        }
+        catch {
+            Write-Host "LASTEXITCODE $LASTEXITCODE"
+        }
+        finally {
+            "go run methods.go" | Should -ReturnZeroExitCode
+            "go build methods.go" | Should -ReturnZeroExitCode
+            "./methods" | Should -ReturnZeroExitCode
+        }
     }
 }

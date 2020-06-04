@@ -51,7 +51,7 @@ jobs:
             Version="$(Version)";
           }
         }
-        Invoke-Pester -Script $pesterParams -OutputFile "test_results.xml" -OutputFormat NUnitXml
+        Invoke-Pester -Script $pesterParams -OutputFile "$(Build.SourcesDirectory)/tests/test_results.xml" -OutputFormat NUnitXml
       workingDirectory: '$(Build.SourcesDirectory)/tests'
 
   - task: PublishTestResults@2
