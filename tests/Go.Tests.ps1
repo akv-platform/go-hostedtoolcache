@@ -29,6 +29,8 @@ Describe "Go" {
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
         Set-Location -Path $simpleLocation
+        # we need use Execute command because on windows it produces exit code -1
+        # but it works as expected
         Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run simple.go" | Should -ReturnZeroExitCode
         "go build simple.go" | Should -ReturnZeroExitCode
@@ -38,6 +40,8 @@ Describe "Go" {
     It "Run maps code" {
         $mapsLocation = Join-Path -Path $sourceLocation -ChildPath "maps"
         Set-Location -Path $mapsLocation
+        # we need use Execute command because on windows it produces exit code -1
+        # but it works as expected
         Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run maps.go" | Should -ReturnZeroExitCode
         "go build maps.go" | Should -ReturnZeroExitCode
@@ -47,6 +51,8 @@ Describe "Go" {
     It "Run methods code" {
         $methodsLocation = Join-Path -Path $sourceLocation -ChildPath "methods"
         Set-Location -Path $methodsLocation
+        # we need use Execute command because on windows it produces exit code -1
+        # but it works as expected
         Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run methods.go" | Should -ReturnZeroExitCode
         "go build methods.go" | Should -ReturnZeroExitCode
