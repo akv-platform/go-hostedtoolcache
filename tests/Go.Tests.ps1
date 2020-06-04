@@ -29,10 +29,17 @@ Describe "Go" {
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
         Set-Location -Path $simpleLocation
-        "go mod init example.com/m" | Should -ReturnZeroExitCode
+        try {
+            go mod init example.com/m
+        } 
+        catch{
+            Write-Host "LASTEXITCODE $LASTEXITCODE"
+        } 
+        finally{
         "go run simple.go" | Should -ReturnZeroExitCode
         "go build simple.go" | Should -ReturnZeroExitCode
         "./simple" | Should -ReturnZeroExitCode
+        }
     }
 
     It "Run maps code" {
