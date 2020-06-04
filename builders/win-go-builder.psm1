@@ -37,16 +37,17 @@ class WinGoBuilder : GoBuilder {
         #>
 
         $base = $this.GetBaseUri()
-        $allJsonVerions = Invoke-RestMethod "https://golang.org/dl/?mode=json&include=all"
+        $arch = $this.Architecture
+
         If ($this.Version.Build -eq "0") {
             $goVersion = "go$($this.Version.ToString(2))"
         } else {
             $goVersion = "go$($this.Version.ToString(3))"
         }
-        $versionOS = $allJsonVerions | Where-Object { $_.version -eq "$goVersion" } | Select-Object -Last 1
-        $arch = "$($this.Architecture)".Replace("x", "")
-        $objVersion = $versionOS.files | Where-Object { $_.os -Match "windows" -and $_.filename -Match "zip" -and $_.arch -Match "$arch" } | Select-Object -First 1
-        $filename = $objVersion.filename
+        If ($this.Architecture -eq "x64"){
+            $arch = "amd64"
+        }
+        $filename = "$goVersion.$($this.Platform)-$arch.zip"
 
         return "${base}/$filename"
     }

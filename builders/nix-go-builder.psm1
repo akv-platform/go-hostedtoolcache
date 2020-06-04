@@ -35,7 +35,7 @@ class NixGoBuilder : GoBuilder {
         .SYNOPSIS
         Get base Go URI and return complete URI for Go installation executable.
         #>
-        go1.14.4.darwin-amd64.tar.gz
+
         $base = $this.GetBaseUri()
         $arch = $this.Architecture
 
