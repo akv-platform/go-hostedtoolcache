@@ -47,7 +47,7 @@ class WinGoBuilder : GoBuilder {
         If ($this.Architecture -eq "x64"){
             $arch = "amd64"
         }
-        $filename = "$goVersion.$($this.Platform)-$arch.zip"
+        $filename = "$goVersion.windows-$arch.zip"
 
         return "${base}/$filename"
     }
