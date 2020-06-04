@@ -4,6 +4,7 @@ param (
 )
 
 Import-Module (Join-Path $PSScriptRoot "../helpers/pester-extensions.psm1")
+Import-Module (Join-Path $PSScriptRoot "../helpers/common-helpers.psm1")
 
 Describe "Go" {
     It "is available" {
