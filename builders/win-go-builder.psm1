@@ -1,18 +1,18 @@
-using module "./builders/node-builder.psm1"
+using module "./builders/go-builder.psm1"
 
-class WinNodeBuilder : NodeBuilder {
+class WinGoBuilder : GoBuilder {
     <#
     .SYNOPSIS
-    Ubuntu Node.js builder class.
+    Ubuntu Go builder class.
 
     .DESCRIPTION
-    Contains methods that required to build Ubuntu Node.js artifact from sources. Inherited from base NixNodeBuilder.
+    Contains methods that required to build Ubuntu Go artifact from sources. Inherited from base NixGoBuilder.
 
     .PARAMETER platform
-    The full name of platform for which Node.js should be built.
+    The full name of platform for which Go should be built.
 
     .PARAMETER version
-    The version of Node.js that should be built.
+    The version of Go that should be built.
 
     #>
 
@@ -20,37 +20,27 @@ class WinNodeBuilder : NodeBuilder {
     [string] $InstallationScriptName
     [string] $OutputArtifactName
 
-    WinNodeBuilder(
+    WinGoBuilder(
         [version] $version,
         [string] $platform,
         [string] $architecture
     ) : Base($version, $platform, $architecture) {
         $this.InstallationTemplateName = "win-setup-template.ps1"
         $this.InstallationScriptName = "setup.ps1"
-        $this.OutputArtifactName = "node-$Version-$Platform-$Architecture.7z"
-    }
-
-    [uri] GetBinariesUri() {
-        <#
-        .SYNOPSIS
-        Get base Node.js URI and return complete URI for Node.js installation executable.
-        #>
-
-        $base = $this.GetBaseUri()
-        return "${base}/v$($this.Version)/node-v$($this.Version)-win-$($this.Architecture).7z"
+        $this.OutputArtifactName = "go-$Version-$Platform-$Architecture.zip"
     }
 
     [void] ExtractBinaries($archivePath) {
         $extractTargetDirectory = Join-Path $this.TempFolderLocation "tempExtract"
         Extract-SevenZipArchive -ArchivePath $archivePath -OutputDirectory $extractTargetDirectory
-        $nodeOutputPath = Get-Item $extractTargetDirectory\* | Select-Object -First 1 -ExpandProperty Fullname
-        Move-Item -Path $nodeOutputPath\* -Destination $this.WorkFolderLocation
+        $goOutputPath = Get-Item $extractTargetDirectory\* | Select-Object -First 1 -ExpandProperty Fullname
+        Move-Item -Path $goOutputPath\* -Destination $this.WorkFolderLocation
     }
 
     [void] CreateInstallationScript() {
         <#
         .SYNOPSIS
-        Create Node.js artifact installation script based on specified template.
+        Create Go artifact installation script based on specified template.
         #>
 
         $installationScriptLocation = New-Item -Path $this.WorkFolderLocation -Name $this.InstallationScriptName -ItemType File
@@ -69,6 +59,6 @@ class WinNodeBuilder : NodeBuilder {
 
     [void] ArchiveArtifact() {
         $OutputPath = Join-Path $this.ArtifactFolderLocation $this.OutputArtifactName
-        Create-SevenZipArchive -SourceFolder $this.WorkFolderLocation -ArchivePath $OutputPath -ArchiveType "7z"
+        Create-SevenZipArchive -SourceFolder $this.WorkFolderLocation -ArchivePath $OutputPath -ArchiveType "zip"
     }
 }

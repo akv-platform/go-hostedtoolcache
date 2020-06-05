@@ -1,5 +1,5 @@
 jobs:
-- job: Build_Node
+- job: Build_Go
   timeoutInMinutes: 90
   pool:
     name: Azure Pipelines
@@ -8,14 +8,14 @@ jobs:
   - checkout: self
     
   - task: PowerShell@2
-    displayName: 'Build Node $(Version)'
+    displayName: 'Build Go $(Version)'
     inputs:
       targetType: filePath
-      filePath: './builders/build-node.ps1'
+      filePath: './builders/build-go.ps1'
       arguments: '-Version $(Version) -Platform $(Platform) -Architecture $(Architecture)'
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish Artifact: Node.js $(Version)'
+    displayName: 'Publish Artifact: Go $(Version)'
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)' 
-      artifactName: 'node-$(Version)-$(Platform)-$(Architecture)'
+      artifactName: 'go-$(Version)-$(Platform)-$(Architecture)'

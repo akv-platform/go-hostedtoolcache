@@ -1,25 +1,25 @@
-class NodeBuilder {
+class GoBuilder {
     <#
     .SYNOPSIS
-    Base Node.js builder class.
+    Base Go builder class.
 
     .DESCRIPTION
-    Base Node.js builder class that contains general builder methods.
+    Base Go builder class that contains general builder methods.
 
     .PARAMETER Version
-    The version of Node.js that should be built.
+    The version of Go that should be built.
 
     .PARAMETER Platform
-    The platform of Node.js that should be built.
+    The platform of Go that should be built.
 
     .PARAMETER Architecture
-    The architecture with which Node.js should be built.
+    The architecture with which Go should be built.
 
     .PARAMETER TempFolderLocation
-    The location of temporary files that will be used during Node.js package generation. Using system BUILD_STAGINGDIRECTORY variable value.
+    The location of temporary files that will be used during Go package generation. Using system BUILD_STAGINGDIRECTORY variable value.
 
     .PARAMETER ArtifactLocation
-    The location of generated Node.js artifact. Using system environment BUILD_BINARIESDIRECTORY variable value.
+    The location of generated Go artifact. Using system environment BUILD_BINARIESDIRECTORY variable value.
 
     .PARAMETER InstallationTemplatesLocation
     The location of installation script template. Using "installers" folder from current repository.
@@ -34,7 +34,7 @@ class NodeBuilder {
     [string] $ArtifactFolderLocation
     [string] $InstallationTemplatesLocation
 
-    NodeBuilder ([version] $version, [string] $platform, [string] $architecture) {
+    GoBuilder ([version] $version, [string] $platform, [string] $architecture) {
         $this.Version = $version
         $this.Platform = $platform
         $this.Architecture = $architecture
@@ -47,19 +47,30 @@ class NodeBuilder {
         $this.InstallationTemplatesLocation = Join-Path -Path $PSScriptRoot -ChildPath "../installers"
     }
 
-    [uri] GetBaseUri() {
+    [uri] GetBinariesUri() {
         <#
         .SYNOPSIS
-        Return base URI for Node.js binaries.
+        Get base Go URI and return complete URI for Go installation executable.
         #>
 
-        return "https://nodejs.org/download/release"
+        $arch = ($this.Architecture -eq "x64") ? "amd64" : $this.Architecture
+        $goPlatform = ($this.Platform -Match "win32") ? "windows" : $this.Platform
+        $ArchiveType = ($this.Platform -Match "win32") ? "zip" : "tar.gz"
+        If ($this.Version.Build -eq "0") {
+            $goVersion = "go$($this.Version.ToString(2))"
+        } else {
+            $goVersion = "go$($this.Version.ToString(3))"
+        }
+
+        $filename = "$goVersion.$goPlatform-$arch.$ArchiveType"
+
+        return "https://storage.googleapis.com/golang/$filename"
     }
 
     [string] Download() {
         <#
         .SYNOPSIS
-        Download Node.js binaries into artifact location.
+        Download Go binaries into artifact location.
         #>
 
         $binariesUri = $this.GetBinariesUri()
@@ -81,10 +92,10 @@ class NodeBuilder {
     [void] Build() {
         <#
         .SYNOPSIS
-        Generates Node.js artifact from downloaded binaries.
+        Generates Go artifact from downloaded binaries.
         #>
 
-        Write-Host "Download Node.js $($this.Version) [$($this.Architecture)] executable..."
+        Write-Host "Download Go $($this.Version) [$($this.Architecture)] executable..."
         $binariesArchivePath = $this.Download()
 
         Write-Host "Unpack binaries to target directory"
