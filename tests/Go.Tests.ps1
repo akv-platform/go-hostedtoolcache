@@ -22,7 +22,7 @@ Describe "Go" {
     }
 
     It "version is correct" {
-        $versionOutput = Execute-Command -Command "go version"
+        $versionOutput = Invoke-Expression -Command "go version"
         $finalVersion = $Version.ToString(3)
         If ($Version.Build -eq "0"){
             $finalVersion = $Version.ToString(2)
