@@ -1,25 +1,25 @@
 set -e
 
-NODE_VERSION={0}
+GO_VERSION={0}
 
-NODE_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/node
-NODE_TOOLCACHE_VERSION_PATH=$NODE_TOOLCACHE_PATH/$NODE_VERSION
-NODE_TOOLCACHE_VERSION_ARCH_PATH=$NODE_TOOLCACHE_VERSION_PATH/x64
+GO_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/go
+GO_TOOLCACHE_VERSION_PATH=$GO_TOOLCACHE_PATH/$GO_VERSION
+GO_TOOLCACHE_VERSION_ARCH_PATH=$GO_TOOLCACHE_VERSION_PATH/x64
 
-echo "Check if Node.js hostedtoolcache folder exist..."
-if [ ! -d $NODE_TOOLCACHE_PATH ]; then
-    mkdir -p $NODE_TOOLCACHE_PATH
+echo "Check if Go hostedtoolcache folder exist..."
+if [ ! -d $GO_TOOLCACHE_PATH ]; then
+    mkdir -p $GO_TOOLCACHE_PATH
 fi
 
-echo "Delete Node.js $NODE_VERSION if installed"
-rm -rf $NODE_TOOLCACHE_VERSION_PATH
+echo "Delete Go $GO_VERSION if installed"
+rm -rf $GO_TOOLCACHE_VERSION_PATH
 
-echo "Create Node.js $NODE_VERSION folder"
-mkdir -p $NODE_TOOLCACHE_VERSION_ARCH_PATH
+echo "Create Go $GO_VERSION folder"
+mkdir -p $GO_TOOLCACHE_VERSION_ARCH_PATH
 
-echo "Copy Node.js binaries to hostedtoolcache folder"
-cp -R ./* $NODE_TOOLCACHE_VERSION_ARCH_PATH
-rm $NODE_TOOLCACHE_VERSION_ARCH_PATH/setup.sh
+echo "Copy Go binaries to hostedtoolcache folder"
+cp -R ./* $GO_TOOLCACHE_VERSION_ARCH_PATH
+rm $GO_TOOLCACHE_VERSION_ARCH_PATH/setup.sh
 
 echo "Create complete file"
-touch $NODE_TOOLCACHE_VERSION_PATH/x64.complete
+touch $GO_TOOLCACHE_VERSION_PATH/x64.complete

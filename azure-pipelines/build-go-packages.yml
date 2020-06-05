@@ -1,4 +1,4 @@
-name: $(date:yyyyMMdd)$(rev:.r)-Node.js-$(VERSION)
+name: $(date:yyyyMMdd)$(rev:.r)-Go-$(VERSION)
 trigger: none
 pr:
   autoCancel: true
@@ -10,7 +10,7 @@ pr:
     - versions-manifest.json
 
 stages:
-- stage: Build_Node_Darwin
+- stage: Build_Go_Darwin
   dependsOn: []
   variables:
     Platform: darwin
@@ -18,9 +18,9 @@ stages:
   jobs:
   - template: /azure-pipelines/templates/build-job.yml
 
-- stage: Test_Node_Darwin
+- stage: Test_Go_Darwin
   condition: succeeded()
-  dependsOn: Build_Node_Darwin
+  dependsOn: Build_Go_Darwin
   variables:
     VmImage: macOS-latest
     Platform: darwin
@@ -28,7 +28,7 @@ stages:
   jobs:
   - template: /azure-pipelines/templates/test-job.yml
 
-- stage: Build_Node_Linux
+- stage: Build_Go_Linux
   dependsOn: []
   variables:
     Platform: linux
@@ -36,9 +36,9 @@ stages:
   jobs:
   - template: /azure-pipelines/templates/build-job.yml
 
-- stage: Test_Node_Linux
+- stage: Test_Go_Linux
   condition: succeeded()
-  dependsOn: Build_Node_Linux
+  dependsOn: Build_Go_Linux
   variables:
     VmImage: ubuntu-latest
     Platform: linux
@@ -46,7 +46,7 @@ stages:
   jobs:
   - template: /azure-pipelines/templates/test-job.yml
 
-- stage: Build_Node_Windows
+- stage: Build_Go_Windows
   dependsOn: []
   variables:
     Platform: win32
@@ -54,9 +54,9 @@ stages:
   jobs:
   - template: /azure-pipelines/templates/build-job.yml
 
-- stage: Test_Node_Windows
+- stage: Test_Go_Windows
   condition: succeeded()
-  dependsOn: Build_Node_Windows
+  dependsOn: Build_Go_Windows
   variables:
     VmImage: windows-latest
     Platform: win32
