@@ -13,7 +13,11 @@ Describe "Go" {
 
     It "version is correct" {
         $versionOutput = Invoke-Expression "go version"
-        $versionOutput | Should -Match $Version
+        $finalVersion = $Version.ToString(3)
+        If ($Version.Build -eq "0"){
+            $finalVersion = $Version.ToString(2)
+        }
+        $versionOutput | Should -Match $finalVersion
     }
 
     It "is used from tool-cache" {
