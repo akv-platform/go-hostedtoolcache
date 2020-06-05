@@ -30,28 +30,6 @@ class NixGoBuilder : GoBuilder {
         $this.OutputArtifactName = "go-$Version-$Platform-$Architecture.tar.gz"
     }
 
-    [uri] GetBinariesUri() {
-        <#
-        .SYNOPSIS
-        Get base Go URI and return complete URI for Go installation executable.
-        #>
-
-        $base = $this.GetBaseUri()
-        $arch = $this.Architecture
-
-        If ($this.Version.Build -eq "0") {
-            $goVersion = "go$($this.Version.ToString(2))"
-        } else {
-            $goVersion = "go$($this.Version.ToString(3))"
-        }
-        If ($this.Architecture -eq "x64"){
-            $arch = "amd64"
-        }
-        $filename = "$goVersion.$($this.Platform)-$arch.tar.gz"
-
-        return "${base}/$filename"
-    }
-
     [void] ExtractBinaries($archivePath) {
         Extract-TarArchive -ArchivePath $archivePath -OutputDirectory $this.WorkFolderLocation
     }

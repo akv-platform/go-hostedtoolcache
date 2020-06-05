@@ -39,6 +39,16 @@ jobs:
       version: '$(Version)'
 
   - task: PowerShell@2
+    displayName: 'Wait for the logs'
+    inputs:
+      targetType: inline
+      script: |
+         Write-Host "Fake step that do nothing"
+         Write-Host "We need it because log of previous step 'Use Go' is not available here yet."
+         Write-Host "In testing step (Go.Tests.ps1) we analyze build log of 'GoTool' task"
+         Write-Host "to determine if Go version was consumed from cache and was downloaded"
+
+  - task: PowerShell@2
     displayName: 'Run tests'
     inputs:
       TargetType: inline

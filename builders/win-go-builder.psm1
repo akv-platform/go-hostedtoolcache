@@ -30,28 +30,6 @@ class WinGoBuilder : GoBuilder {
         $this.OutputArtifactName = "go-$Version-$Platform-$Architecture.zip"
     }
 
-    [uri] GetBinariesUri() {
-        <#
-        .SYNOPSIS
-        Get base Go URI and return complete URI for Go installation executable.
-        #>
-
-        $base = $this.GetBaseUri()
-        $arch = $this.Architecture
-
-        If ($this.Version.Build -eq "0") {
-            $goVersion = "go$($this.Version.ToString(2))"
-        } else {
-            $goVersion = "go$($this.Version.ToString(3))"
-        }
-        If ($this.Architecture -eq "x64"){
-            $arch = "amd64"
-        }
-        $filename = "$goVersion.windows-$arch.zip"
-
-        return "${base}/$filename"
-    }
-
     [void] ExtractBinaries($archivePath) {
         $extractTargetDirectory = Join-Path $this.TempFolderLocation "tempExtract"
         Extract-SevenZipArchive -ArchivePath $archivePath -OutputDirectory $extractTargetDirectory

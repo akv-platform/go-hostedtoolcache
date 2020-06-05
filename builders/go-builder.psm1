@@ -47,13 +47,24 @@ class GoBuilder {
         $this.InstallationTemplatesLocation = Join-Path -Path $PSScriptRoot -ChildPath "../installers"
     }
 
-    [uri] GetBaseUri() {
+    [uri] GetBinariesUri() {
         <#
         .SYNOPSIS
-        Return base URI for Go binaries.
+        Get base Go URI and return complete URI for Go installation executable.
         #>
 
-        return "https://storage.googleapis.com/golang"
+        $arch = ($this.Architecture -eq "x64") ? "amd64" : $this.Architecture
+        $goPlatform = ($this.Platform -Match "win") ? "windows" : $this.Platform
+        $ArchiveType = ($this.Platform -Match "win") ? "zip" : "tar.gz"
+        If ($this.Version.Build -eq "0") {
+            $goVersion = "go$($this.Version.ToString(2))"
+        } else {
+            $goVersion = "go$($this.Version.ToString(3))"
+        }
+
+        $filename = "$goVersion.$goPlatform-$arch.$ArchiveType"
+
+        return "https://storage.googleapis.com/golang/$filename"
     }
 
     [string] Download() {

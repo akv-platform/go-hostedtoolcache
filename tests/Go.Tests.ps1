@@ -6,13 +6,23 @@ param (
 Import-Module (Join-Path $PSScriptRoot "../helpers/pester-extensions.psm1")
 Import-Module (Join-Path $PSScriptRoot "../helpers/common-helpers.psm1")
 
+function Get-UseGoLogs {
+    $logsFolderPath = Join-Path -Path $env:AGENT_HOMEDIRECTORY -ChildPath "_diag" | Join-Path -ChildPath "pages"
+
+    $useGoLogFile = Get-ChildItem -Path $logsFolderPath | Where-Object {
+        $logContent = Get-Content $_.Fullname -Raw
+        return $logContent -match "GoTool"
+    } | Select-Object -First 1
+    return $useGoLogFile.Fullname
+}
+
 Describe "Go" {
     It "is available" {
         "go version" | Should -ReturnZeroExitCode
     }
 
     It "version is correct" {
-        $versionOutput = Invoke-Expression "go version"
+        $versionOutput = Execute-Command -Command "go version"
         $finalVersion = $Version.ToString(3)
         If ($Version.Build -eq "0"){
             $finalVersion = $Version.ToString(2)
@@ -27,15 +37,22 @@ Describe "Go" {
         $goPath.startsWith($expectedPath) | Should -BeTrue -Because "'$goPath' is not started with '$expectedPath'"
     }
 
+    It "cached version is used without downloading" {
+        # Analyze output of previous steps to check if Go was consumed from cache or downloaded
+        $useGoLogFile = Get-UseGoLogs
+        $useGoLogFile | Should -Exist
+        $useGoLogContent = Get-Content $useGoLogFile -Raw
+        $useGoLogContent | Should -Match "Found tool in cache"
+    }
+
     Set-Location -Path "source"
     $sourceLocation = Get-Location
+    # we need use Execute command because on windows it produces exit code -1
+    Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
 
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
         Set-Location -Path $simpleLocation
-        # we need use Execute command because on windows it produces exit code -1
-        # but it works as expected
-        Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run simple.go" | Should -ReturnZeroExitCode
         "go build simple.go" | Should -ReturnZeroExitCode
         "./simple" | Should -ReturnZeroExitCode
@@ -44,9 +61,6 @@ Describe "Go" {
     It "Run maps code" {
         $mapsLocation = Join-Path -Path $sourceLocation -ChildPath "maps"
         Set-Location -Path $mapsLocation
-        # we need use Execute command because on windows it produces exit code -1
-        # but it works as expected
-        Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run maps.go" | Should -ReturnZeroExitCode
         "go build maps.go" | Should -ReturnZeroExitCode
         "./maps" | Should -ReturnZeroExitCode
@@ -55,9 +69,6 @@ Describe "Go" {
     It "Run methods code" {
         $methodsLocation = Join-Path -Path $sourceLocation -ChildPath "methods"
         Set-Location -Path $methodsLocation
-        # we need use Execute command because on windows it produces exit code -1
-        # but it works as expected
-        Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
         "go run methods.go" | Should -ReturnZeroExitCode
         "go build methods.go" | Should -ReturnZeroExitCode
         "./methods" | Should -ReturnZeroExitCode
