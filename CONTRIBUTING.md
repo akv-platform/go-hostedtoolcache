@@ -1,7 +1,7 @@
 ## Contributing
 
-[fork]: https://github.com/actions/node-versions/fork  
-[pr]: https://github.com/actions/node-versions/compare  
+[fork]: https://github.com/actions/go-versions/fork  
+[pr]: https://github.com/actions/go-versions/compare  
 [code-of-conduct]: CODE_OF_CONDUCT.md  
 
 Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.
@@ -38,7 +38,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
     └──sources/
 ```
 - `azure-pipelines*` - contains global YAML definitions for build pipelines. Reusable templates for specific jobs are located in `templates` subfolder.
-- `builders` - contains Node.js builder classes and functions.
+- `builders` - contains Go builder classes and functions.
 - `helpers` - contains global helper functions and functions.
 - `installers` - contains installation script templates.
 - `tests` - contains test scripts. Required tests sources are located in `sources` subfolder.
