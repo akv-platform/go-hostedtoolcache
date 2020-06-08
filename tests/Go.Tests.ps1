@@ -1,5 +1,5 @@
 param (
-    [Version] [Parameter (Mandatory = $true)] [ValidateNotNullOrEmpty()]
+    [version] [Parameter (Mandatory = $true)] [ValidateNotNullOrEmpty()]
     $Version
 )
 
@@ -48,7 +48,6 @@ Describe "Go" {
     Set-Location -Path "source"
     $sourceLocation = Get-Location
     # we need use Execute command because on windows it produces exit code -1
-    # Execute-Command -Command "go mod init example.com/m" -ErrorAction Continue
 
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
