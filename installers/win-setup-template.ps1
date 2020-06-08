@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-[Version]$Version = "{{__VERSION__}}"
+[version]$Version = "{{__VERSION__}}"
 [string]$Architecture = "{{__ARCHITECTURE__}}"
 
 $ToolcacheRoot = $env:AGENT_TOOLSDIRECTORY

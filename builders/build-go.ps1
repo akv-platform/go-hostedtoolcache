@@ -20,7 +20,7 @@ Required parameter. The platform for which Go will be built.
 #>
 
 param(
-    [Parameter (Mandatory=$true)][Version] $Version,
+    [Parameter (Mandatory=$true)][version] $Version,
     [Parameter (Mandatory=$true)][string] $Platform,
     [string] $Architecture = "x64"
 )
