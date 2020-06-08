@@ -47,7 +47,6 @@ Describe "Go" {
 
     Set-Location -Path "source"
     $sourceLocation = Get-Location
-    # we need use Execute command because on windows it produces exit code -1
 
     It "Run simple code" {
         $simpleLocation = Join-Path -Path $sourceLocation -ChildPath "simple"
