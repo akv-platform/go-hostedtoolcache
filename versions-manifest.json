@@ -1,0 +1,202 @@
+[
+  {
+    "version": "1.14.4",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.14.4-20200605.6",
+    "files": [
+      {
+        "filename": "go-1.14.4-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.14.4-20200605.6/go-1.14.4-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.14.4-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.14.4-20200605.6/go-1.14.4-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.14.4-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.14.4-20200605.6/go-1.14.4-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.13.12",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.13.12-20200608.8",
+    "files": [
+      {
+        "filename": "go-1.13.12-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.13.12-20200608.8/go-1.13.12-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.13.12-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.13.12-20200608.8/go-1.13.12-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.13.12-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.13.12-20200608.8/go-1.13.12-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.12.17",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.12.17-20200608.10",
+    "files": [
+      {
+        "filename": "go-1.12.17-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.12.17-20200608.10/go-1.12.17-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.12.17-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.12.17-20200608.10/go-1.12.17-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.12.17-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.12.17-20200608.10/go-1.12.17-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.11.13",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.11.13-20200608.12",
+    "files": [
+      {
+        "filename": "go-1.11.13-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.13-20200608.12/go-1.11.13-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.11.13-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.13-20200608.12/go-1.11.13-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.11.13-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.13-20200608.12/go-1.11.13-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.11.0",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.11.0-20200608.13",
+    "files": [
+      {
+        "filename": "go-1.11.0-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.0-20200608.13/go-1.11.0-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.11.0-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.0-20200608.13/go-1.11.0-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.11.0-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.11.0-20200608.13/go-1.11.0-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.10.8",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.10.8-20200608.14",
+    "files": [
+      {
+        "filename": "go-1.10.8-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.10.8-20200608.14/go-1.10.8-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.10.8-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.10.8-20200608.14/go-1.10.8-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.10.8-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.10.8-20200608.14/go-1.10.8-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.9.7",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.9.7-20200608.1",
+    "files": [
+      {
+        "filename": "go-1.9.7-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.9.7-20200608.1/go-1.9.7-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.9.7-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.9.7-20200608.1/go-1.9.7-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.9.7-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.9.7-20200608.1/go-1.9.7-win32-x64.zip"
+      }
+    ]
+  },
+  {
+    "version": "1.8.0",
+    "stable": true,
+    "release_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/tag/1.8.0-20200609.1",
+    "files": [
+      {
+        "filename": "go-1.8.0-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.8.0-20200609.1/go-1.8.0-darwin-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.8.0-linux-x64.tar.gz",
+        "arch": "x64",
+        "platform": "linux",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.8.0-20200609.1/go-1.8.0-linux-x64.tar.gz"
+      },
+      {
+        "filename": "go-1.8.0-win32-x64.zip",
+        "arch": "x64",
+        "platform": "win32",
+        "download_url": "https://github.com/akv-platform/go-hostedtoolcache/releases/download/1.8.0-20200609.1/go-1.8.0-win32-x64.zip"
+      }
+    ]
+  }
+]
